@@ -1,4 +1,4 @@
-# WORKSHOP REACT
+# HOUR OF CODE REACT
 
 ## Setup
 
@@ -38,9 +38,7 @@
 - promises
 - async-await
 
-## EP II
-
-### O que é o React e como ele funciona
+## EP II - O QUE É REACT E COMO ELE FUNCIONA
 
 # REFERENCIAS
 
