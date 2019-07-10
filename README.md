@@ -40,7 +40,56 @@
 
 ## EP II - O QUE É REACT E COMO ELE FUNCIONA
 
+- [Artigo](http://dtidigital.com.br/blog/considere-react-no-seu-projeto/)
+- React é uma library para criar UI's
+- Declarativa
+  - mais previsível, mais fácil de debugar
+- Baseado em componentes
+  - não existe separação de tecnologias marcação (HTML) e lógica (JS)
+    - em vez disso, separa-se **_concerns_** [SoC](https://en.wikipedia.org/wiki/Separation_of_concerns)
+    - reduz acoplamento, aumenta coesão
+  - o DOM é gerado via função(JS) pelo react
+  - one-way-binding
+    - mais fácil de controlar e debugar
+  - o estado é controlado fora do DOM
+  - o componente re-renderiza a UI sempre que algum estado muda
+  - não quer dizer que todo DOM é atualizado. Somente as partes que de fato mudaram
+  - isso é possível graças ao [virtual DOM object](https://www.codecademy.com/articles/react-virtual-dom)
+    - uma representação virtual (em JS) do DOM real
+  - o DOM real só é alterado nas partes que precisa ser alterado
+    - caso seja identificado diferenças entre o DOM virtual antigo e o novo
+    - caso contrário, o DOM real não é manipulado
+    - isso faz com que a atualização seja muito menos custosa e muito mais rápida
+
+### JSX e React elements
+
+- JSX não é nem uma string nem é puramente HTML
+- é como uma "notação" para criar _React Elements_. Análogo ao **xml**
+- _React Elements_ não são DOM elements
+- são apenas objetos simples que descrevem como o elemento deve ser
+  ```javascript
+  const element = <h1 className="greeting">Hello, world!</h1>;
+  ```
+- no final das contas o [Babel](https://babeljs.io) transpila o JSX criando o React Element via função
+  ```javascript
+  const element = React.createElement('h1', { className: 'greeting' }, 'Hello, world!');
+  ```
+
+### Como renderizar o elemento no DOM afinal?
+
+- em algum lugar no HTML você tem
+  ```javascript
+  <div id="root" />
+  ```
+- e no JSX você cria seu elemento react, e fala para o React onde no HTML esse elemento deve ser renderizado
+  ```javascript
+  const element = <h1>Hello, world</h1>;
+  ReactDOM.render(element, document.getElementById('root'));
+  ```
+
 # REFERENCIAS
+
+https://reactjs.org
 
 https://developer.mozilla.org/pt-BR/docs/Web/JavaScript
 
