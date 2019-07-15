@@ -87,6 +87,60 @@
   ReactDOM.render(element, document.getElementById('root'));
   ```
 
+## EP III - COMPONENTES
+
+- orientação a componentes é uma forma de contornar duplicação de código
+- então, se um ou vários elementos da sua UI são usados em diferentes locais com poucas ou nenhuma alteração visual e/ou de comportamento, você poderia considerar componentiza-los para reuso
+- _"React is all about components"_
+- componentes "são como" funções JS que recebem inputs (**props**) e renderizam elementos React
+- há duas formas de criar componentes em react
+- **function components** que são literalmente funções que recebem **props** como parametro e retornam **JSX** ou **null**
+  ```javascript
+  function Welcome(props) {
+    return <h1>Hello, {props.name}</h1>;
+  }
+  ```
+- e **class component** usando ES6 class. São classes que devem retornar um **JSX** ou **null** necessariamente excutando o método **render()**
+  ```javascript
+  class Welcome extends React.Component {
+    render() {
+      return <h1>Hello, {this.props.name}</h1>;
+    }
+  }
+  ```
+- usar **function components** ou **class components** implica em performance
+- **function components** são mais performáticos
+- **IMPORTANTE** antes da versão **16.6** os **function components** eram também conhecidos como **stateless components**, isso porque estes não controlavam seu próprio estado.
+- os **class components** por sua vez eram também conhecidos como **stateful components** pois controlam o próprio estado e possuem _lifecycles_ (mais detalhes a seguir)
+  . **NO ENTANTO** a partir da versão **16.6** do react, novas features possibilitam que **function components** controlem o seu próprio estado sem serem _classes_
+
+### Componentes - Props
+
+- o fluxo de data do React é **_top-down_**, ou seja o componente de mais alto nível passa o para componentes "filhos" via **Props**
+- o componente pai chama o filho e passa as props necessárias
+  ```javascript
+  class MeuComponentPrincipal extends React.Component {
+    render() {
+      return (
+        <div>
+          <h1>Esta é uma aplicação React</h1>
+          <Welcome name="Ramon" />
+        </div>
+      );
+    }
+  }
+  ```
+- o componente filho recebe as **props** e as usa
+  ```javascript
+  class Welcome extends React.Component {
+    render() {
+      return <h1>Meu nome é {this.props.name}</h1>;
+    }
+  }
+  ```
+- as **Props** recebidas por um componente são imutáveis
+- um componente "pai" pode passar também, via **props**, referencias de funções implementadas no pai para serem chamadas nos filhos
+
 # REFERENCIAS
 
 https://reactjs.org
