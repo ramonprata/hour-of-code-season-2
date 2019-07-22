@@ -1,16 +1,22 @@
-import React, { Component } from 'react';
+import React, { Component, PureComponent } from 'react';
 import meuEstiloModulo from './testeEstilo.module.css';
 
 class WelcomeClass extends Component {
+  componentDidMount() {
+    console.log(' componentDidMount WelcomeClass');
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('shouldComponentUpdate  WelcomeClass');
+    return nextProps.paragrafo !== this.props.paragrafo;
+  }
+
   render() {
+    console.log(' render WelcomeClass');
     const { content } = styles;
     return (
       <div className={meuEstiloModulo.divDois} style={{ ...content }}>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, ex! Quis debitis eaque
-          similique asperiores iste odit provident nam excepturi sapiente numquam. Numquam nisi
-          pariatur, illo iusto laborum soluta libero?
-        </p>
+        <p>{this.props.paragrafo}</p>
       </div>
     );
   }

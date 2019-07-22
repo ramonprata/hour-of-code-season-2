@@ -8,6 +8,30 @@ import WelcomeClass from './welcomeClass';
 const arrayTest = [1, 2, 3, 4, 5];
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      comment: 'Hello..',
+      counter: 0
+    };
+  }
+
+  componentDidMount() {
+    console.log('componentDidMount');
+    setTimeout(() => {
+      this.setState({ comment: 'Comentario alterado..' });
+    }, 5000);
+    setInterval(() => {
+      this.setState(prevState => {
+        return {
+          counter: prevState.counter + 1
+        };
+      });
+    }, 1000);
+
+    this.setState(prevState => {});
+  }
+
   funcaoUm = () => {
     alert('chamada um');
   };
@@ -17,19 +41,29 @@ class App extends Component {
   };
 
   render() {
+    console.log('render APP');
     const { container, content, divUm, divDois } = styles;
+    const { comment, counter } = this.state;
     return (
       <React.Fragment>
         <div className="App">
           <header className="App-header">
+            <h1 style={{ color: '#282c34' }}>{comment}</h1>
+            <h3 style={{ color: '#282c34' }}>{counter}</h3>
             <div style={container}>
+              {/* <WelcomeClass paragrafo={comment} /> */}
               <WelcomeFunction
                 bgColor="purple"
                 paragrafo="Texto um...."
                 onChamadaBla={this.funcaoUm}
                 tituloBotao="Botao um"
               >
-                <img src={logo} className="App-logo" alt="logo" />
+                <img
+                  style={{ height: 150, width: 150 }}
+                  src={logo}
+                  className="App-logo"
+                  alt="logo"
+                />
               </WelcomeFunction>
 
               <WelcomeFunction
@@ -38,7 +72,12 @@ class App extends Component {
                 tituloBotao="Botão dois"
                 onChamadaBla={this.funcaoDois}
               >
-                <img src={logo} className="App-logo" alt="logo" />
+                <img
+                  style={{ height: 150, width: 150 }}
+                  src={logo}
+                  className="App-logo"
+                  alt="logo"
+                />
               </WelcomeFunction>
             </div>
           </header>

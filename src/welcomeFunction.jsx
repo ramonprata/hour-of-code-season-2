@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+
 import Botao from './botao';
 const WelcomeFunction = props => {
+  console.log('WelcomeFunction');
   const { bgColor, paragrafo, onChamadaBla } = props;
   const { content, divUm } = styles;
 
@@ -22,6 +24,11 @@ var styles = {
 };
 
 WelcomeFunction.defaultProps = {
-  paragrafo: 'Nâo possui paragrafo'
+  paragrafo: ''
 };
-export default WelcomeFunction;
+
+function paragrafoEhIgual(prevProps, nextProps) {
+  return prevProps.paragrafo === nextProps.paragrafo;
+}
+
+export default React.memo(WelcomeFunction);
