@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Botao from './botao';
+import Botao from '../botao';
 const WelcomeFunction = props => {
   console.log('WelcomeFunction');
   const { bgColor, paragrafo, onChamadaBla } = props;
