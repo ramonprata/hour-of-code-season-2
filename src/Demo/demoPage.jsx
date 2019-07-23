@@ -12,7 +12,6 @@ class DemoPage extends Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount');
     setTimeout(() => {
       this.setState({ comment: 'Comentario alterado..' });
     }, 5000);
