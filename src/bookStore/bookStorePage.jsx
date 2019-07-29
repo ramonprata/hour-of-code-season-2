@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import BookCard from './bookCard';
 
 const BookStorePage = props => {
   const { books, erro, chamadaConcluida } = props;
@@ -8,7 +9,8 @@ const BookStorePage = props => {
     if (!chamadaConcluida) {
       return <span>Loading...</span>;
     } else if (exibirBooks) {
-      return <h1>Hello..{JSON.stringify(props.books)}</h1>;
+      return <BookCard />;
+      // return <h1>Hello..{JSON.stringify(props.books)}</h1>;
     } else {
       return <span>Ocorreu um erro inesperado</span>;
     }

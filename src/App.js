@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import DemoPage from './Demo/demoPage';
-import BookStoreAppBar from './bookStore/bookStoreAppBar';
+import AppBarCustomizado from './layout/appBar';
 import BookStoreContainer from './bookStore/bookStoreContainer';
-
+import ShoppingCartPage from './shoppingCart/shoppingCartPage';
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <BookStoreAppBar />
+        <AppBarCustomizado />
         <Switch>
           <Route exact path="/" component={DemoPage} />
-          <Route exact path="/bookstore" component={BookStoreContainer} />
+          <Route exact path="/wish-list" component={BookStoreContainer} />
+          <Route exact path="/shopping-cart" component={ShoppingCartPage} />
           <Route path="/(\w+)" component={DemoPage} />
         </Switch>
       </BrowserRouter>
