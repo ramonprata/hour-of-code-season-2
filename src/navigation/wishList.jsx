@@ -4,7 +4,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 const wishList = props => {
   return (
     <IconButton color="inherit" onClick={() => props.goTo('wish-list')}>
-      <Badge badgeContent={3} color="secondary">
+      <Badge badgeContent={0} color="secondary">
         <FavoriteIcon />
       </Badge>
     </IconButton>

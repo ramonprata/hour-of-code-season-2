@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -6,7 +8,14 @@ import CardContent from '@material-ui/core/CardContent';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { ShoppingCart } from '@material-ui/icons/';
 import { Grid, Typography, IconButton, CardMedia } from '@material-ui/core';
+import * as bookStoreActions from './bookStoreActions';
 export class BookCard extends React.Component {
+  componentDidMount() {
+    setTimeout(() => {
+      this.props.setBookTitle('As crônicas de Narnia');
+    }, 3000);
+  }
+
   render() {
     const { classes, book } = this.props;
     return (
@@ -23,7 +32,7 @@ export class BookCard extends React.Component {
           />
           <CardContent className={classes.cardContent}>
             <Typography component="p" variant="subtitle1" id={`tituloLivro${book.id}`}>
-              Book title
+              {this.props.bookTitle}
             </Typography>
             <Typography variant="subtitle2" color="textSecondary" id={`autorLivro${book.id}`}>
               Book Author
@@ -72,4 +81,20 @@ const styles = theme => ({
   }
 });
 
-export default withStyles(styles)(BookCard);
+const mapStateToProps = ({ bookTitle }) => {
+  return {
+    bookTitle
+  };
+};
+
+const mapDispatchToProps = {
+  setBookTitle: bookStoreActions.setTitle
+};
+
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  withStyles(styles)
+)(BookCard);
