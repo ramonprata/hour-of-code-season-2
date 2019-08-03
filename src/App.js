@@ -13,8 +13,8 @@ class App extends Component {
         <BrowserRouter>
           <AppBarCustomizado />
           <Switch>
-            <Route exact path="/" component={DemoPage} />
-            <Route exact path="/wish-list" component={BookStoreContainer} />
+            <Route exact path="/" component={BookStoreContainer} />
+            {/* <Route exact path="/wish-list" component={} /> */}
             <Route exact path="/shopping-cart" component={ShoppingCartPage} />
             <Route path="/(\w+)" component={DemoPage} />
           </Switch>

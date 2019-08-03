@@ -10,12 +10,6 @@ import { ShoppingCart } from '@material-ui/icons/';
 import { Grid, Typography, IconButton, CardMedia } from '@material-ui/core';
 import * as bookStoreActions from './bookStoreActions';
 export class BookCard extends React.Component {
-  componentDidMount() {
-    setTimeout(() => {
-      this.props.setBookTitle('As crônicas de Narnia');
-    }, 3000);
-  }
-
   render() {
     const { classes, book } = this.props;
     return (
@@ -25,17 +19,14 @@ export class BookCard extends React.Component {
             id={`imgBook${book.id}`}
             onClick={() => {}}
             className={classes.cover}
-            image={
-              'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJ0AAAB2CAMAAADle2GlAAAAVFBMVEXDw8MAAADHx8eampq2trYWFhZ0dHSoqKhpaWnLy8tjY2MZGRm/v7+wsLDOzs58fHwtLS2Li4s3NzehoaE9PT1NTU1cXFwnJydEREQKCgoyMjIeHh5YhBzxAAABZElEQVR4nO3Yy5KDIBCFYUAUibc4xlzf/z3HkDijThVxNc3i/1aWyeIUNNigFAAAAAAAAAAAAJAYs5dIOJft4yTi2Vzvk9v/D2dsdXB7HCqRdHnhdxRdW8iMXV4YZerG+uj/vFw6477ySx+tesF09eNZ9kMsnlw6P4RFWcbmVjCdC+mKVbrN9is4s+o0hbs1yzjGjatClFwV9fk0rsPZi9b9YjAlx055tZ7I9roZTdF027ddqMSj+vkpoXRmeH9by5TSzQ/1ff70Z3PpiaczdVaHx3b87UysSSSdGvU9vOoXfdNVpZHOP1fCYVq8zW3Z1nU+hXQ+C2GmPe6y7jpfpSeb7t0J6LwpNz3xIxSjcLp5JRz/tOyjeDrfRU4Uz9KTTGdcJJzW03FMsgtQVTRdJdujnKPhtD4buXRt/yHctNHInMmm03ahys+U0NilfNpO+6Yi8VuetG/IAAAAAAAAAAAAgJhvnKsQpRON+KwAAAAASUVORK5CYII='
-            }
-            title="Live from space album cover"
+            image={book.volumeInfo.imageLinks.thumbnail}
           />
           <CardContent className={classes.cardContent}>
             <Typography component="p" variant="subtitle1" id={`tituloLivro${book.id}`}>
-              {this.props.bookTitle}
+              {book.volumeInfo.title}
             </Typography>
             <Typography variant="subtitle2" color="textSecondary" id={`autorLivro${book.id}`}>
-              Book Author
+              {book.volumeInfo.authors ? book.volumeInfo.authors.join(' ') : ''}
             </Typography>
           </CardContent>
           <div>
@@ -62,7 +53,7 @@ BookCard.propTypes = {
 
 BookCard.defaultProps = {
   book: {
-    id: 0
+    volumeInfo: { authors: [], title: '' }
   }
 };
 
@@ -70,7 +61,8 @@ const styles = theme => ({
   card: {
     height: 350,
     width: 250,
-    cursor: 'pointer'
+    cursor: 'pointer',
+    margin: '20px 0'
   },
   cardContent: {
     height: 75
@@ -81,9 +73,9 @@ const styles = theme => ({
   }
 });
 
-const mapStateToProps = ({ bookTitle }) => {
+const mapStateToProps = ({ bookStore }) => {
   return {
-    bookTitle
+    bookTitle: bookStore.title
   };
 };
 

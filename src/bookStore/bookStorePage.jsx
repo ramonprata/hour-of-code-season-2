@@ -1,22 +1,26 @@
 import React, { Component } from 'react';
 import BookCard from './bookCard';
+import withLoading from '../layout/withLoading';
+import { Grid } from '@material-ui/core';
+import BookStoreList from './bookStoreList';
+import ListItems from '../shared/listItems';
 
 const BookStorePage = props => {
   const { books, erro, chamadaConcluida } = props;
   const exibirBooks = chamadaConcluida && books.length > 0;
 
-  const conteudo = () => {
-    if (!chamadaConcluida) {
-      return <span>Loading...</span>;
-    } else if (exibirBooks) {
-      return <BookCard />;
-      // return <h1>Hello..{JSON.stringify(props.books)}</h1>;
-    } else {
-      return <span>Ocorreu um erro inesperado</span>;
-    }
-  };
-
-  return <React.Fragment>{conteudo()}</React.Fragment>;
+  return (
+    <Grid
+      container
+      direction="column"
+      justify="center"
+      alignItems="center"
+      style={{ padding: '0 50px' }}
+    >
+      <ListItems itens={books} renderItem={book => <BookCard book={book} />} />
+    </Grid>
+  );
 };
 
-export default BookStorePage;
+const BookStorePageWithLoading = withLoading(BookStorePage);
+export default BookStorePageWithLoading;

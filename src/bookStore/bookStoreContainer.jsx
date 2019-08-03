@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import BookStorePage from './bookStorePage';
+import * as layoutActions from '../layout/redux/layoutActions';
 class BookStoreContainer extends Component {
   state = {
     books: [],
@@ -10,6 +12,7 @@ class BookStoreContainer extends Component {
 
   async componentDidMount() {
     try {
+      this.props.setLoading();
       const respostaAPIBooks = await axios.get(
         'https://workshopreact-a7f54.firebaseio.com/books.json/'
       );
@@ -18,8 +21,8 @@ class BookStoreContainer extends Component {
         books: respostaAPIBooks.data,
         chamadaConcluida: true
       });
+      this.props.setLoading();
     } catch (error) {
-      console.log('error :', error);
       this.setState({
         chamadaConcluida: true,
         erro: true
@@ -33,4 +36,10 @@ class BookStoreContainer extends Component {
   }
 }
 
-export default BookStoreContainer;
+const mapDispatchToProps = {
+  setLoading: layoutActions.setLoading
+};
+export default connect(
+  null,
+  mapDispatchToProps
+)(BookStoreContainer);

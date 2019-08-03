@@ -255,6 +255,13 @@
 
 ![](images/redux2.png)
 
+## EP VIII - Alguns tópicos úteis
+
+- [React fragment](https://reactjs.org/docs/fragments.html)
+- [HOC](https://reactjs.org/docs/higher-order-components.html)
+- [Render Props](https://reactjs.org/docs/render-props.html)
+- [Composition](https://reactjs.org/docs/composition-vs-inheritance.html)
+
 # REFERENCIAS
 
 https://reactjs.org
