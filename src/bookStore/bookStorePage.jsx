@@ -8,7 +8,6 @@ import ListItems from '../shared/listItems';
 const BookStorePage = props => {
   const { books, erro, chamadaConcluida } = props;
   const exibirBooks = chamadaConcluida && books.length > 0;
-
   return (
     <Grid
       container

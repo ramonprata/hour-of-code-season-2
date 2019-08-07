@@ -43,4 +43,5 @@ var styles = {
     // backgroundColor: 'purple'
   }
 };
+
 export default withStyles(styles)(SimpleAppBar);

@@ -1,40 +1,34 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import BookStorePage from './bookStorePage';
 import * as layoutActions from '../layout/redux/layoutActions';
-class BookStoreContainer extends Component {
-  state = {
-    books: [],
-    chamadaConcluida: false,
-    erro: false
-  };
 
-  async componentDidMount() {
+const BookStoreContainer = props => {
+  const [books, setBooks] = useState([]);
+  const [chamadaConcluida, setChamadaConcluida] = useState(false);
+  const [erro, setErro] = useState(false);
+
+  const getBooks = async () => {
     try {
-      this.props.setLoading();
+      props.setLoading();
       const respostaAPIBooks = await axios.get(
         'https://workshopreact-a7f54.firebaseio.com/books.json/'
       );
-
-      this.setState({
-        books: respostaAPIBooks.data,
-        chamadaConcluida: true
-      });
-      this.props.setLoading();
+      setChamadaConcluida(true);
+      setBooks(respostaAPIBooks.data);
+      props.setLoading();
     } catch (error) {
-      this.setState({
-        chamadaConcluida: true,
-        erro: true
-      });
+      setChamadaConcluida(true);
+      setErro(true);
     }
-  }
+  };
+  useEffect(() => {
+    getBooks();
+  }, [books, chamadaConcluida]);
 
-  render() {
-    const { books, chamadaConcluida, erro } = this.state;
-    return <BookStorePage books={books} erro={erro} chamadaConcluida={chamadaConcluida} />;
-  }
-}
+  return <BookStorePage books={books} erro={erro} chamadaConcluida={chamadaConcluida} />;
+};
 
 const mapDispatchToProps = {
   setLoading: layoutActions.setLoading

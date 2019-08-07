@@ -8,44 +8,42 @@ import CardContent from '@material-ui/core/CardContent';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { ShoppingCart } from '@material-ui/icons/';
 import { Grid, Typography, IconButton, CardMedia } from '@material-ui/core';
-import * as bookStoreActions from './bookStoreActions';
-export class BookCard extends React.Component {
-  render() {
-    const { classes, book } = this.props;
-    return (
-      <Card className={classes.card}>
-        <Grid container direction="column" justify="flex-end">
-          <CardMedia
-            id={`imgBook${book.id}`}
-            onClick={() => {}}
-            className={classes.cover}
-            image={book.volumeInfo.imageLinks.thumbnail}
-          />
-          <CardContent className={classes.cardContent}>
-            <Typography component="p" variant="subtitle1" id={`tituloLivro${book.id}`}>
-              {book.volumeInfo.title}
-            </Typography>
-            <Typography variant="subtitle2" color="textSecondary" id={`autorLivro${book.id}`}>
-              {book.volumeInfo.authors ? book.volumeInfo.authors.join(' ') : ''}
-            </Typography>
-          </CardContent>
-          <div>
-            <IconButton
-              aria-label="Add to favorites"
-              id={`btnFavorite${book.id}`}
-              onClick={() => {}}
-            >
-              <FavoriteIcon />
-            </IconButton>
-            <IconButton aria-label="Share" id={`btnShopping${book.id}`} onClick={() => {}}>
-              <ShoppingCart />
-            </IconButton>
-          </div>
-        </Grid>
-      </Card>
-    );
-  }
-}
+import { setShoppingCart } from './bookStoreActions';
+const BookCard = props => {
+  const { classes, book } = props;
+  return (
+    <Card className={classes.card}>
+      <Grid container direction="column" justify="flex-end">
+        <CardMedia
+          id={`imgBook${book.id}`}
+          onClick={() => {}}
+          className={classes.cover}
+          image={book.volumeInfo.imageLinks.thumbnail}
+        />
+        <CardContent className={classes.cardContent}>
+          <Typography component="p" variant="subtitle1" id={`tituloLivro${book.id}`}>
+            {book.volumeInfo.title}
+          </Typography>
+          <Typography variant="subtitle2" color="textSecondary" id={`autorLivro${book.id}`}>
+            {book.volumeInfo.authors ? book.volumeInfo.authors.join(' ') : ''}
+          </Typography>
+        </CardContent>
+        <div>
+          <IconButton aria-label="Add to favorites" id={`btnFavorite${book.id}`} onClick={() => {}}>
+            <FavoriteIcon />
+          </IconButton>
+          <IconButton
+            aria-label="Share"
+            id={`btnShopping${book.id}`}
+            onClick={() => props.setShoppingCart(book)}
+          >
+            <ShoppingCart />
+          </IconButton>
+        </div>
+      </Grid>
+    </Card>
+  );
+};
 
 BookCard.propTypes = {
   classes: PropTypes.object.isRequired
@@ -80,7 +78,7 @@ const mapStateToProps = ({ bookStore }) => {
 };
 
 const mapDispatchToProps = {
-  setBookTitle: bookStoreActions.setTitle
+  setShoppingCart: setShoppingCart
 };
 
 export default compose(

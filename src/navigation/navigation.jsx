@@ -1,13 +1,15 @@
 import React from 'react';
 import Cart from './cart';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 import WishList from './wishList';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router';
 import { Grid } from '@material-ui/core';
 const navigation = props => {
   console.log('props :', props);
-  const { classes } = props;
-
+  const { classes, amountCart } = props;
+  console.log('amountCart', amountCart);
   const goTo = path => {
     props.history.replace(path);
   };
@@ -25,4 +27,14 @@ var styles = {
     width: 120
   }
 };
-export default withRouter(withStyles(styles)(navigation));
+const mapStateToProps = ({ bookStore }) => {
+  return {
+    amountCart: bookStore.shoppingcart.length
+  };
+};
+
+export default compose(
+  connect(mapStateToProps),
+  withRouter,
+  withStyles(styles)
+)(navigation);
