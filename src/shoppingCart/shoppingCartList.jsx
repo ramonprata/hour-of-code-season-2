@@ -7,15 +7,20 @@ import ImageIcon from '@material-ui/icons/Image';
 import WorkIcon from '@material-ui/icons/Work';
 import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 import ShoppingCartItem from './shoppingCartItem';
-import { Paper } from '@material-ui/core';
+import { Paper, Typography } from '@material-ui/core';
 
 function shoppingCartList(props) {
-  const { classes } = props;
+  const { classes, shoppingCart } = props;
+  const mapBooksShoppingCart = () => {
+    if (shoppingCart.length) {
+      return shoppingCart.map(book => <ShoppingCartItem book={book} />);
+    } else {
+      return <Typography>Não foi selecionado nenhum book</Typography>;
+    }
+  };
   return (
     <Paper>
-      <List className={classes.root}>
-        <ShoppingCartItem />
-      </List>
+      <List className={classes.root}>{mapBooksShoppingCart()}</List>
     </Paper>
   );
 }

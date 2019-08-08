@@ -2,7 +2,7 @@ import React from 'react';
 import { ListItemText, ListItem, Grid } from '@material-ui/core/';
 import { withStyles } from '@material-ui/styles';
 const shoppingCartItem = props => {
-  const { classes } = props;
+  const { classes, book } = props;
   return (
     <ListItem>
       <Grid container direction="row" alignItems="center">
@@ -13,14 +13,17 @@ const shoppingCartItem = props => {
             alt=""
           />
         </div>
-        <ListItemText primary="Titulo livro" secondary="Autores" />
+        <ListItemText
+          primary={book.volumeInfo.title}
+          secondary={book.volumeInfo.authors ? book.volumeInfo.authors.join(' ') : ''}
+        />
       </Grid>
     </ListItem>
   );
 };
 const styles = {
   item: {
-    width: '100%'
+    width: '  %'
   },
   image: {
     width: 50,

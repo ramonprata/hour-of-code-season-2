@@ -25,7 +25,7 @@ const BookStoreContainer = props => {
   };
   useEffect(() => {
     getBooks();
-  }, [books, chamadaConcluida]);
+  }, []);
 
   return <BookStorePage books={books} erro={erro} chamadaConcluida={chamadaConcluida} />;
 };

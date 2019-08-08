@@ -1,10 +1,12 @@
 import React from 'react';
-import { IconButton, Button } from '@material-ui/core/';
+import { IconButton, Button, Badge } from '@material-ui/core/';
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
 const cart = props => {
   return (
     <IconButton color="inherit" onClick={() => props.goTo('shopping-cart')}>
-      <ShoppingCart />
+      <Badge badgeContent={props.amountCart} color="secondary">
+        <ShoppingCart />
+      </Badge>
     </IconButton>
   );
 };

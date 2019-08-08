@@ -11,13 +11,13 @@ const navigation = props => {
   const { classes, amountCart } = props;
   console.log('amountCart', amountCart);
   const goTo = path => {
-    props.history.replace(path);
+    props.history.push(path);
   };
 
   return (
     <Grid container direction="row" justify="space-between" className={classes.container}>
       <WishList goTo={goTo} />
-      <Cart goTo={goTo} />
+      <Cart goTo={goTo} amountCart={amountCart} />
     </Grid>
   );
 };
