@@ -262,6 +262,45 @@
 - [Render Props](https://reactjs.org/docs/render-props.html)
 - [Composition](https://reactjs.org/docs/composition-vs-inheritance.html)
 
+## EP IX - Atualizando..
+
+## EP X - Testes - em breve vídeo aula..
+
+## Projeto TODO LIST
+
+- Descrição
+  - Criar um agendador de tarefas.
+
+### Requisitos mínimos
+
+- Deve ser possível criar novas tarefas
+  - As tarefas devem conter: Titulo, Descrição, Responsável pela tarefa, Status (A FAZER, FAZENDO, FEITAS)
+- Deve listar tarefas
+  - A listagem deve separar tarefas de acordo com seu status
+  - Ao clicar em uma tarefa da lista, deve ser exibido o detalhamento desta em uma visualização separada da lista
+- Deve ser possível excluir tarefas
+
+### Avaliação
+
+- O projeto será avaliado em alguns aspectos com uma pontuação de 0 a 5
+  - 0 não cumpriu com o item especificado
+  - 5 cumpriu com o item de forma adequada
+- Critérios que serão avaliados
+  - Funcionalidades atendendo os requisitos mínimos
+  - Uso de boas práticas
+    - Organização do projeto e código
+    - Componentização
+    - Reuso de componentes e/ou lógica entre componentes
+    - Performance: uso de técnicas para optmização de componentes e renderização
+    - Uso adequado de packages
+      - Navegação. Sugestão react-router
+      - Controle de estado. Sugestão redux
+      - Tratamento manipulação de dados. Sugestão lodash
+  - Pontos bônus
+    - Testes unitários
+      - De componentes
+      - De funções
+
 # REFERENCIAS
 
 https://reactjs.org
