@@ -1,7 +1,8 @@
-import { SET_TITLE, SET_SHOPPING_CART } from './bookStoreActions';
+import { SET_TITLE, SET_SHOPPING_CART, SET_WISH_LIST } from './bookStoreActions';
 const INITIAL_STATE = {
   bookTitle: 'meu primeiro estado',
-  shoppingcart: []
+  shoppingcart: [],
+  wishList: []
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -11,6 +12,9 @@ export default (state = INITIAL_STATE, action) => {
 
     case SET_SHOPPING_CART:
       return { ...state, shoppingcart: [...state.shoppingcart, action.payload] };
+
+    case SET_WISH_LIST:
+      return { ...state, wishList: [...state.wishList, action.payload] };
 
     default:
       return { ...state };

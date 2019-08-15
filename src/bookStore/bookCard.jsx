@@ -8,15 +8,16 @@ import CardContent from '@material-ui/core/CardContent';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { ShoppingCart } from '@material-ui/icons/';
 import { Grid, Typography, IconButton, CardMedia } from '@material-ui/core';
-import { setShoppingCart } from './bookStoreActions';
-const BookCard = props => {
+import { setShoppingCart, setShoppingWishList } from './bookStoreActions';
+import { goToPreview } from '../shared/utils';
+const bookCard = props => {
   const { classes, book } = props;
   return (
     <Card className={classes.card}>
       <Grid container direction="column" justify="flex-end">
         <CardMedia
           id={`imgBook${book.id}`}
-          onClick={() => {}}
+          onClick={() => goToPreview(book)}
           className={classes.cover}
           image={book.volumeInfo.imageLinks.thumbnail}
         />
@@ -29,7 +30,11 @@ const BookCard = props => {
           </Typography>
         </CardContent>
         <div>
-          <IconButton aria-label="Add to favorites" id={`btnFavorite${book.id}`} onClick={() => {}}>
+          <IconButton
+            aria-label="Add to favorites"
+            id={`btnFavorite${book.id}`}
+            onClick={() => props.setShoppingWishList(book)}
+          >
             <FavoriteIcon />
           </IconButton>
           <IconButton
@@ -45,11 +50,11 @@ const BookCard = props => {
   );
 };
 
-BookCard.propTypes = {
+bookCard.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-BookCard.defaultProps = {
+bookCard.defaultProps = {
   book: {
     volumeInfo: { authors: [], title: '' }
   }
@@ -78,7 +83,8 @@ const mapStateToProps = ({ bookStore }) => {
 };
 
 const mapDispatchToProps = {
-  setShoppingCart: setShoppingCart
+  setShoppingCart: setShoppingCart,
+  setShoppingWishList: setShoppingWishList
 };
 
 export default compose(
@@ -87,4 +93,4 @@ export default compose(
     mapDispatchToProps
   ),
   withStyles(styles)
-)(BookCard);
+)(bookCard);

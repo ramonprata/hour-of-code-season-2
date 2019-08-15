@@ -2,10 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-import Avatar from '@material-ui/core/Avatar';
-import ImageIcon from '@material-ui/icons/Image';
-import WorkIcon from '@material-ui/icons/Work';
-import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 import ShoppingCartItem from './shoppingCartItem';
 import { Paper, Typography } from '@material-ui/core';
 
@@ -13,22 +9,24 @@ function shoppingCartList(props) {
   const { classes, shoppingCart } = props;
   const mapBooksShoppingCart = () => {
     if (shoppingCart.length) {
-      return shoppingCart.map(book => <ShoppingCartItem book={book} />);
+      return (
+        <Paper>
+          {shoppingCart.map(book => (
+            <ShoppingCartItem book={book} />
+          ))}
+        </Paper>
+      );
     } else {
-      return <Typography>Não foi selecionado nenhum book</Typography>;
+      return <Typography color="textSecondary">Não foi selecionado nenhum book</Typography>;
     }
   };
-  return (
-    <Paper>
-      <List className={classes.root}>{mapBooksShoppingCart()}</List>
-    </Paper>
-  );
+  return <List className={classes.root}>{mapBooksShoppingCart()}</List>;
 }
 const styles = theme => ({
   root: {
-    width: '80%',
-    // maxWidth: 360,
-    backgroundColor: theme.palette.background.paper
+    width: '100%',
+    backgroundColor: theme.palette.background.paper,
+    paddingTop: 0
   }
 });
 

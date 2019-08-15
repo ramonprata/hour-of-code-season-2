@@ -7,16 +7,14 @@ import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router';
 import { Grid } from '@material-ui/core';
 const navigation = props => {
-  console.log('props :', props);
-  const { classes, amountCart } = props;
-  console.log('amountCart', amountCart);
+  const { classes, amountCart, amountWishList } = props;
   const goTo = path => {
     props.history.push(path);
   };
 
   return (
     <Grid container direction="row" justify="space-between" className={classes.container}>
-      <WishList goTo={goTo} />
+      <WishList goTo={goTo} amountWishList={amountWishList} />
       <Cart goTo={goTo} amountCart={amountCart} />
     </Grid>
   );
@@ -29,7 +27,8 @@ var styles = {
 };
 const mapStateToProps = ({ bookStore }) => {
   return {
-    amountCart: bookStore.shoppingcart.length
+    amountCart: bookStore.shoppingcart.length,
+    amountWishList: bookStore.wishList.length
   };
 };
 
