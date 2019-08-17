@@ -262,6 +262,27 @@
 - [Render Props](https://reactjs.org/docs/render-props.html)
 - [Composition](https://reactjs.org/docs/composition-vs-inheritance.html)
 
+## EP IX - Aplicação conceitos no projeto BookStore
+
+- Refatoração de componentes class transformando em functions
+- Aplicação de hooks
+- Aplicação de HOC
+- Componentização, reuso e composição de componentes
+- Melhorias de layout: uso do material ui
+
+## EP X - Testes unitários
+
+- Testes unitários de funções
+
+  - [Jest](https://jestjs.io/)
+  - Testes unitários de funções nos ajudam validar regras de negócio, tratamento de dados, etc
+  - Exemplo: `.src/shoppingCart/tests/shoppingCartActions.test.js`
+
+- Testes unitários de componentes
+  - [Jest](https://jestjs.io/) + [Enzyme](https://airbnb.io/enzyme/)
+  - Testes unitários de componentes nos ajudam validar renderizações de componentes, state/props, eventos, etc.
+  - Exemplo: `.src/bookStore/tests/bookCard.test.js`
+
 # REFERENCIAS
 
 https://reactjs.org

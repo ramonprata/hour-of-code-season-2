@@ -10,8 +10,8 @@ import { ShoppingCart } from '@material-ui/icons/';
 import { Grid, Typography, IconButton, CardMedia } from '@material-ui/core';
 import { setShoppingCart, setShoppingWishList } from './bookStoreActions';
 import { goToPreview } from '../shared/utils';
-const bookCard = props => {
-  const { classes, book } = props;
+export const bookCard = props => {
+  const { classes, book, setShoppingCart, setShoppingWishList } = props;
   return (
     <Card className={classes.card}>
       <Grid container direction="column" justify="flex-end">
@@ -22,10 +22,10 @@ const bookCard = props => {
           image={book.volumeInfo.imageLinks.thumbnail}
         />
         <CardContent className={classes.cardContent}>
-          <Typography component="p" variant="subtitle1" id={`tituloLivro${book.id}`}>
+          <Typography component="p" variant="subtitle1" id={`bookTitle${book.id}`}>
             {book.volumeInfo.title}
           </Typography>
-          <Typography variant="subtitle2" color="textSecondary" id={`autorLivro${book.id}`}>
+          <Typography variant="subtitle2" color="textSecondary" id={`bookAuthors${book.id}`}>
             {book.volumeInfo.authors ? book.volumeInfo.authors.join(' ') : ''}
           </Typography>
         </CardContent>
@@ -33,14 +33,14 @@ const bookCard = props => {
           <IconButton
             aria-label="Add to favorites"
             id={`btnFavorite${book.id}`}
-            onClick={() => props.setShoppingWishList(book)}
+            onClick={() => setShoppingWishList(book)}
           >
             <FavoriteIcon />
           </IconButton>
           <IconButton
             aria-label="Share"
             id={`btnShopping${book.id}`}
-            onClick={() => props.setShoppingCart(book)}
+            onClick={() => setShoppingCart(book)}
           >
             <ShoppingCart />
           </IconButton>
