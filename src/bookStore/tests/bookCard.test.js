@@ -38,6 +38,7 @@ describe('Testa <BookCard />', function() {
   });
 
   it(`Deve renderizar a imagem do book: imgBook${bookMock.id}`, () => {
+    // encontra a imagem pelo id
     const imagemBook = component.find(`#imgBook${bookMock.id}`);
     // valida se a imagem existe
     expect(imagemBook.exists()).toEqual(true);
