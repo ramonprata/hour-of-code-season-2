@@ -114,7 +114,7 @@
 - os **class components** por sua vez eram também conhecidos como **stateful components** pois controlam o próprio estado e possuem _lifecycles_ (mais detalhes a seguir)
   . **NO ENTANTO** a partir da versão **16.6** do react, novas features possibilitam que **function components** controlem o seu próprio estado sem serem _classes_
 
-### Componentes - Props
+### EP IV - COMPONENTES - Props
 
 - o fluxo de data do React é **_top-down_**, ou seja o componente de mais alto nível passa o para componentes "filhos" via **Props**
 - o componente pai chama o filho e passa as props necessárias
@@ -140,6 +140,148 @@
   ```
 - as **Props** recebidas por um componente são imutáveis
 - um componente "pai" pode passar também, via **props**, referencias de funções implementadas no pai para serem chamadas nos filhos
+
+## EP VI - Componentes - State/Lifecycle
+
+### State
+
+- O estado de um componente diz como este deve ser apresentado na tela
+- Quando o estado do componente não depende ou não provém de um componente pai (**props**), o proprio componente controla seu estado. Isso pode ser chamado de estado local
+
+  ```javascript
+  class App extends Component {
+    state = {
+      comment: 'Comentário inicial'
+    };
+    render() {
+      return (
+        <div>
+          <h1>Hello, world!</h1>
+          <h2>My comment: {this.state.comment}.</h2>
+        </div>
+      );
+    }
+  }
+  ```
+
+- O estado de um componente deve ser alterado via chamada de função `setState({})`
+
+  ```javascript
+  // Errado
+  this.state.comment = 'Hello';
+  // Certo
+  this.setState({ comment: 'Hello' });
+  ```
+
+### LifeCycle
+
+- LifeCycle são alguns métodos que são executados durante o ciclo de criação ou atualização de um componente
+- Esses métodos são executados pelo React, e só existe **lifecycle** em componentes do tipo **class components**
+- Embora os **function components** não tenham **lifecycle**, novas features adicionadas ao React na versão **16.6**, possibilitam que **function components** se comportem exatamente como **class component** no que diz respeito a controle de estado e **lifecycle**.
+- Essas novas features serão abordadas mais a frente..
+- Existem **lifecycles** de criação e atualização do componente
+- A atualização de um componente ocorre quando um componente pai passa props para o componente, ou quando o próprio componente atualiza seu estado via `setState()`
+- Toda atualização irá invocar o **lifecycle** de atualização do componente novamente
+- Entender o **lifecycle** e como a alteração de estado do componente interage com o **lifecycle** é extremamente importante e sua aplicação influencia diretamente na performance e usabilidade da aplicação
+- Component **lifecycle** exemplo
+
+  ```javascript
+  class MeuComponente extends Component {
+    state = {
+      comment: 'Comentário inicial'
+    };
+    // o componentDidMount é um dos métodos do lifecycle de criação do componente
+    // ele executa quando o componente acaba de renderizar
+    componentDidMount() {
+      setTimeout(() => {
+        this.setState({
+          comment: 'Altera o comentário 3 segundos depois que meu componente for montado'
+        });
+      }, 3000);
+    }
+
+    render() {
+      return (
+        <div>
+          <h1>Hello, world!</h1>
+          <h2>My comment: {this.state.comment}.</h2>
+        </div>
+      );
+    }
+  }
+  ```
+
+### Componentes - LifeCycle - React < 16.3
+
+![](images/lifecyclereact.png)
+
+### Componentes - LifeCycle - React >= 16.3
+
+![](images/lifecyclereact16.png)
+
+## EP VI
+
+### Navegação - React router
+
+- Route
+- Switch
+- Link
+- Navegação programática
+- Navegação com parâmetros
+
+### Navegação - Prática - Book Store
+
+![](images/bookStoreModulo4.png)
+
+## EP VII
+
+### Controle de estado da aplicação - React Redux
+
+- controle de estado global da aplicação
+- compartilhar estados entre componentes em qualquer nível
+- store
+  - state
+    - guarda o estado da aplicação
+  - reducers
+    - funções que alteram o estado da aplicação
+  - actions
+    - ações que dizem como os reducers devem alterar o estado
+
+### Controle de estado da aplicação - React Redux
+
+![](images/redux1.png)
+
+### Controle de estado da aplicação - React Redux
+
+![](images/redux2.png)
+
+## EP VIII - Alguns tópicos úteis
+
+- [React fragment](https://reactjs.org/docs/fragments.html)
+- [HOC](https://reactjs.org/docs/higher-order-components.html)
+- [Render Props](https://reactjs.org/docs/render-props.html)
+- [Composition](https://reactjs.org/docs/composition-vs-inheritance.html)
+
+## EP IX - Aplicação conceitos no projeto BookStore
+
+- Refatoração de componentes class transformando em functions
+- Aplicação de hooks
+- Aplicação de HOC
+- Componentização, reuso e composição de componentes
+- Melhorias de layout: uso do material ui
+
+## EP X - Testes unitários
+
+- Testes unitários de funções
+
+  - [Jest](https://jestjs.io/)
+  - Testes unitários de funções nos ajudam validar regras de negócio, tratamento de dados, etc
+  - Exemplo: `.src/shoppingCart/tests/shoppingCartActions.test.js`
+
+- Testes unitários de componentes
+  - [Jest](https://jestjs.io/) + [Enzyme](https://airbnb.io/enzyme/)
+  - Testes unitários de componentes nos ajudam validar renderizações de componentes, state/props, eventos, etc.
+  - Exemplo: `.src/bookStore/tests/bookCard.test.js`
 
 # REFERENCIAS
 

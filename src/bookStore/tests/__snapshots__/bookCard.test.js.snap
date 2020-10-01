@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testa <BookCard /> Deve renderizar <BookCard />  1`] = `
+<WithStyles(ForwardRef(Card))>
+  <WithStyles(ForwardRef(Grid))
+    container={true}
+    direction="column"
+    justify="flex-end"
+  >
+    <WithStyles(ForwardRef(CardMedia))
+      id="imgBookH9lBCwAAQBAJ"
+      image="http://books.google.com/books/content?id=H9lBCwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+      onClick={[Function]}
+    />
+    <WithStyles(ForwardRef(CardContent))>
+      <WithStyles(ForwardRef(Typography))
+        component="p"
+        id="bookTitleH9lBCwAAQBAJ"
+        variant="subtitle1"
+      >
+        Jane Eyre
+      </WithStyles(ForwardRef(Typography))>
+      <WithStyles(ForwardRef(Typography))
+        color="textSecondary"
+        id="bookAuthorsH9lBCwAAQBAJ"
+        variant="subtitle2"
+      >
+        Charlotte Brontë
+      </WithStyles(ForwardRef(Typography))>
+    </WithStyles(ForwardRef(CardContent))>
+    <div>
+      <WithStyles(ForwardRef(IconButton))
+        aria-label="Add to favorites"
+        id="btnFavoriteH9lBCwAAQBAJ"
+        onClick={[Function]}
+      >
+        <FavoriteIcon />
+      </WithStyles(ForwardRef(IconButton))>
+      <WithStyles(ForwardRef(IconButton))
+        aria-label="Share"
+        id="btnShoppingH9lBCwAAQBAJ"
+        onClick={[Function]}
+      >
+        <ShoppingCartIcon />
+      </WithStyles(ForwardRef(IconButton))>
+    </div>
+  </WithStyles(ForwardRef(Grid))>
+</WithStyles(ForwardRef(Card))>
+`;
